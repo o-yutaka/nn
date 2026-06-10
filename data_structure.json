@@ -1,0 +1,29 @@
+{
+  "entities": {
+    "Material": [
+      "id",
+      "name",
+      "unit",
+      "base_price",
+      "category"
+    ],
+    "Region": [
+      "id",
+      "name",
+      "coefficient",
+      "labor_cost_index"
+    ],
+    "WorkType": [
+      "id",
+      "category",
+      "standard_man_hours",
+      "complexity_factor"
+    ]
+  },
+  "relationships": {
+    "Material_ lairs_in_Region": "Multiplies base_price by region_coefficient",
+    "WorkType_requires_Material": "Defines quantity and type of materials",
+    "Prediction_references_PreviousEstimate": "Temporal link via Graphiti for price trend analysis"
+  },
+  "source_integration": "Scraping from government procurement sites & industry benchmarks"
+}

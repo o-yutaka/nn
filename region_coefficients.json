@@ -1,0 +1,18 @@
+{
+  "osaka":     {"coefficient": 1.05, "labor_index": 1.08},
+  "tokyo":     {"coefficient": 1.20, "labor_index": 1.25},
+  "yokohama":  {"coefficient": 1.15, "labor_index": 1.18},
+  "nagoya":    {"coefficient": 1.08, "labor_index": 1.10},
+  "kobe":      {"coefficient": 1.03, "labor_index": 1.05},
+  "kyoto":     {"coefficient": 1.04, "labor_index": 1.06},
+  "fukuoka":   {"coefficient": 0.98, "labor_index": 0.99},
+  "sapporo":   {"coefficient": 0.95, "labor_index": 0.94},
+  "sendai":    {"coefficient": 0.97, "labor_index": 0.97},
+  "hiroshima": {"coefficient": 0.99, "labor_index": 1.00},
+  "saitama":   {"coefficient": 1.12, "labor_index": 1.14},
+  "chiba":     {"coefficient": 1.10, "labor_index": 1.12},
+  "kanazawa":  {"coefficient": 1.00, "labor_index": 1.01},
+  "shizuoka":  {"coefficient": 1.02, "labor_index": 1.03},
+  "nara":      {"coefficient": 1.00, "labor_index": 1.01},
+  "wakayama":  {"coefficient": 0.97, "labor_index": 0.98}
+}

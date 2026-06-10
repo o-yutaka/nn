@@ -1,0 +1,26 @@
+{
+  "targets": [
+    {
+      "name": "Construction_Standard_Unit_Price",
+      "url": "https://www.mlit.go.jp/...",
+      "selector": ".price-table",
+      "fields": [
+        "item_name",
+        "unit",
+        "base_price"
+      ]
+    },
+    {
+      "name": "Material_Price_Index",
+      "url": "https://industry-benchmark.jp/...",
+      "selector": ".index-value",
+      "fields": [
+        "material_id",
+        "current_index",
+        "date"
+      ]
+    }
+  ],
+  "parsing_rules": "regex_based_extraction",
+  "update_interval": "daily"
+}

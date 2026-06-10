@@ -1,0 +1,14 @@
+{
+  "request": {
+    "work_type": "Interior Painting",
+    "qty": 100,
+    "location": "Osaka"
+  },
+  "breakdown": {
+    "item": "Interior Painting",
+    "total": 150000,
+    "unit_price": 1500
+  },
+  "final_total": 172500.0,
+  "status": "APPROVED"
+}

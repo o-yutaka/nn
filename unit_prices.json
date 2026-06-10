@@ -1,0 +1,16 @@
+{
+  "earthwork":   {"standard": 8500,  "economy": 6500,  "premium": 12000},
+  "concrete":    {"standard": 45000, "economy": 38000, "premium": 58000},
+  "asphalt":     {"standard": 12000, "economy": 9500,  "premium": 16000},
+  "drainage":    {"standard": 35000, "economy": 28000, "premium": 48000},
+  "foundation":  {"standard": 55000, "economy": 45000, "premium": 75000},
+  "framing":     {"standard": 280000, "economy": 220000, "premium": 380000},
+  "roofing":     {"standard": 18000, "economy": 14000, "premium": 28000},
+  "interior":    {"standard": 22000, "economy": 16000, "premium": 35000},
+  "exterior":    {"standard": 3500,  "economy": 2800,  "premium": 5500},
+  "electrical":  {"standard": 120000, "economy": 95000, "premium": 180000},
+  "plumbing":    {"standard": 150000, "economy": 120000, "premium": 220000},
+  "hvac":        {"standard": 200000, "economy": 160000, "premium": 300000},
+  "demolition":  {"standard": 8000,  "economy": 6500,  "premium": 11000},
+  "renovation":  {"standard": 35000, "economy": 28000, "premium": 50000}
+}

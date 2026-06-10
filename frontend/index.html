@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>CONSTRUCT-AI 見積もりフォーム</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; }
+        label { display: block; margin-top: 1rem; }
+        input, select { width: 100%; max-width: 300px; padding: .5rem; margin-top: .25rem; }
+        button { margin-top: 1.5rem; padding: .75rem 1.5rem; font-size: 1rem; cursor: pointer; }
+        #result { margin-top: 2rem; padding: 1rem; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>建設工事 見積もりフォーム</h1>
+    <form id="estimateForm">
+        <label>
+            工種:
+            <select name="work_type" id="work_type">
+                <option value="earthwork">土工</option>
+                <option value="concrete">コンクリート</option>
+                <option value="asphalt">アスファルト</option>
+                <option value="drainage">排水</option>
+                <option value="foundation">基礎</option>
+                <option value="framing">枠組</option>
+                <option value="roofing">屋根</option>
+                <option value="interior">内装</option>
+                <option value="exterior">外装</option>
+                <option value="electrical">電気</option>
+                <option value="plumbing">配管</option>
+                <option value="hvac">空調</option>
+                <option value="demolition">解体</option>
+                <option value="renovation">リノベーション</option>
+            </select>
+        </label>
+
+        <label>
+            数量:
+            <input type="number" name="qty" id="qty" min="0.1" step="0.1" value="100">
+        </label>
+
+        <label>
+            地域:
+            <select name="location" id="location">
+                <option value="osaka">大阪</option>
+                <option value="tokyo">東京</option>
+                <option value="yokohama">横浜</option>
+                <option value="nagoya">名古屋</option>
+                <option value="kobe">神戸</option>
+                <option value="kyoto">京都</option>
+                <option value="fukuoka">福岡</option>
+                <option value="sapporo">札幌</option>
+                <option value="sendai">仙台</option>
+                <option value="hiroshima">広島</option>
+                <option value="saitama">埼玉</option>
+                <option value="chiba">千葉</option>
+                <option value="kanazawa">金沢</option>
+                <option value="shizuoka">静岡</option>
+                <option value="nara">奈良</option>
+                <option value="wakayama">和歌山</option>
+            </select>
+        </label>
+
+        <label>
+            グレード:
+            <select name="grade" id="grade">
+                <option value="economy">エコノミー</option>
+                <option value="standard" selected>標準</option>
+                <option value="premium">プレミアム</option>
+            </select>
+        </label>
+
+        <button type="submit">見積もり取得</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        const form = document.getElementById('estimateForm');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            resultDiv.textContent = '計算中...';
+
+            const data = {
+                work_type: form.work_type.value,
+                qty: parseFloat(form.qty.value),
+                location: form.location.value,
+                grade: form.grade.value
+            };
+
+            try {
+                const response = await fetch('/estimate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // 必要なら API キーをヘッダーに追加:
+                        // 'X-API-Key': 'your-api-key-here'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.detail || '見積もり取得失敗');
+                }
+
+                const result = await response.json();
+                resultDiv.innerHTML = `
+                    <h2>見積もり結果</h2>
+                    <p><strong>工種:</strong> ${result.work_type}</p>
+                    <p><strong>数量:</strong> ${result.qty}</p>
+                    <p><strong>地域:</strong> ${result.location}</p>
+                    <p><strong>グレード:</strong> ${result.grade}</p>
+                    <p><strong>単価:</strong> ¥${result.unit_price.toLocaleString()}/単位</p>
+                    <p><strong>地域係数:</strong> ${result.regional_coefficient}</p>
+                    <p><strong>労務指数:</strong> ${result.labor_index}</p>
+                    <p><strong>材料費:</strong> ¥${result.material_cost.toLocaleString()}</p>
+                    <p><strong>労務費:</strong> ¥${result.labor_cost.toLocaleString()}</p>
+                    <p><strong>諸経費:</strong> ¥${result.overhead.toLocaleString()}</p>
+                    <p><strong>合計:</strong> <big>¥${result.total_cost.toLocaleString()}</big></p>
+                    <p><em>${result.note}</em></p>
+                `;
+            } catch (err) {
+                resultDiv.style.color = 'red';
+                resultDiv.textContent = 'エラー: ' + err.message;
+            }
+        });
+    </script>
+</body>
+</html>
